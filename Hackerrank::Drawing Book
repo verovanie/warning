@@ -1,0 +1,47 @@
+#!/bin/python3
+
+import os
+import sys
+
+#
+# Complete the pageCount function below.
+#
+def pageCount(n, p):
+    countf = 0
+    countb = 0
+    list1 = []
+    i = 0
+    while  i < n :
+        list1.append([i,i+1])
+        i += 2
+    if n % 2 == 0 :
+        list1.append([n,0])
+    
+    print(list1)
+    for j in range (len(list1)) :
+        if list1[j][0] != p and list1[j][1] != p :
+            countf += 1
+        else :
+            break
+    for k in range (len(list1)-1,0,-1) :
+        if list1[k][0] != p and list1[k][1] != p :
+            countb += 1
+        else :
+            break
+    if countb > countf :
+        return countf
+    else :
+        return countb
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    p = int(input())
+
+    result = pageCount(n, p)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
